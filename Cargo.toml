@@ -1,0 +1,14 @@
+[package]
+name = "factorize"
+version = "0.0.0"
+edition = "2021"
+
+license = "Apache-2.0"
+description = "A natively cross-platform and fast factorization utility written in pure Rust. (placeholder for now)"
+repository = "https://github.com/cmpute/factorize"
+keywords = ["numeric", "factorization"]
+categories = ["mathematics", "algorithms"]
+readme = "README.md"
+
+[dependencies]
+num-prime = "0.3.1"
