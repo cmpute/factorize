@@ -6,4 +6,4 @@ A natively cross-platform and fast factorization utility written in pure Rust.
 - Support output diagnosis information to stderr (such as total time, expected time)
 - Support parallel factorization (enable by default)
 - Support set timeout (for large target), and report the partial result (unfactorized part will be marked)
-- Main benchmark: coreutils/factor (C), uutils/factor (`uu_factor` crate), primefac (Python), Pari/GP, SageMath, Cado-NFS
+- Main benchmark: coreutils/factor (C), uutils/factor (`uu_factor` crate), primefac (Python), Pari/GP, SageMath, [YAFU](https://github.com/bbuhrow/yafu), Cado-NFS

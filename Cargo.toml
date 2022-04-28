@@ -1,6 +1,6 @@
 [package]
 name = "factorize"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 
 license = "Apache-2.0"
@@ -11,9 +11,10 @@ categories = ["mathematics", "algorithms"]
 readme = "README.md"
 
 [dependencies]
-num-prime = "0.3.2"
+num-prime = "0.3.3"
 num-bigint = "0.4.0"
 num-traits = "0.2.14"
+yansi = "0.5.1"
 
 [dependencies.clap]
 version = "3.1.12"

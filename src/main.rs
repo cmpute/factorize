@@ -1,6 +1,7 @@
 use clap::{ArgEnum, Parser};
 use num_bigint::BigUint;
 use num_prime::nt_funcs::factorize;
+use yansi::Color::Green;
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq, ArgEnum)]
 enum OutputFormat {
@@ -28,13 +29,20 @@ struct Args {
     #[clap(short, long)]
     prove: bool
 
+    // TODO: set timeout
     // TODO: display input bits, ETA for big integers in verbose mode
     // TODO: implement [Lucas test](https://en.wikipedia.org/wiki/Lucas_primality_test) and output it in json mode
+    // TODO: Profile 103974784173188359291513882659673808303
 }
 
 fn main() {
     let args = Args::parse();
+
     for n in args.num.into_iter() {
+        if args.verbose {
+            eprintln!("{}", Green.paint(format!("The input {} has {} bits", n, n.bits())));
+        }
+
         // print headers
         match args.format {
             OutputFormat::GNU => print!("{}:", n),
