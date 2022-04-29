@@ -32,7 +32,7 @@ struct Args {
     // TODO: set timeout
     // TODO: display input bits, ETA for big integers in verbose mode
     // TODO: implement [Lucas test](https://en.wikipedia.org/wiki/Lucas_primality_test) and output it in json mode
-    // TODO: Profile 103974784173188359291513882659673808303
+    // TODO: Profile 103974784173188359291513882659673808303, 114522132269336660310126182173854449539, 52696948083480579404258676877022335423
 }
 
 fn main() {
