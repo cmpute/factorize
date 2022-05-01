@@ -99,5 +99,7 @@ def main(limit):
     plt.legend()
     plt.show()
 
+    # TODO: save results to csv
+
 if __name__ == "__main__":
     main(BITSIZE_LIMIT)

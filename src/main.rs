@@ -1,6 +1,7 @@
 use clap::{ArgEnum, Parser};
 use num_bigint::BigUint;
 use num_prime::nt_funcs::factorize;
+use std::time::Instant;
 use yansi::Color::Green;
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq, ArgEnum)]
@@ -30,17 +31,23 @@ struct Args {
     prove: bool
 
     // TODO: set timeout
-    // TODO: display input bits, ETA for big integers in verbose mode
+    // TODO: display ETA for big integers in verbose mode
     // TODO: implement [Lucas test](https://en.wikipedia.org/wiki/Lucas_primality_test) and output it in json mode
-    // TODO: Profile 103974784173188359291513882659673808303, 114522132269336660310126182173854449539, 52696948083480579404258676877022335423
 }
+
+// Some hard numbers for profiling:
+// - 129867256139603462101782296446142507
+// - 1270381743900323833201939872564484194
+// - 17808182098465448872915448618034645397
+// - 103974784173188359291513882659673808303
+// - 114522132269336660310126182173854449539
 
 fn main() {
     let args = Args::parse();
 
     for n in args.num.into_iter() {
         if args.verbose {
-            eprintln!("{}", Green.paint(format!("The input {} has {} bits", n, n.bits())));
+            eprintln!("{}", Green.paint(format!("The input {} has {} bits.", n, n.bits())));
         }
 
         // print headers
@@ -51,7 +58,12 @@ fn main() {
         };
 
         // factorize
+        let tstart = Instant::now();
         let factors = factorize(n);
+        let elapsed = tstart.elapsed();
+        if args.verbose {
+            eprintln!("{}", Green.paint(format!("It takes {:.2}ms to factorize.", elapsed.as_secs_f32() * 1000f32)));
+        }
 
         // print factors
         match args.format {

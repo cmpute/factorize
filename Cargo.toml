@@ -11,7 +11,7 @@ categories = ["mathematics", "algorithms"]
 readme = "README.md"
 
 [dependencies]
-num-prime = "0.3.3"
+num-prime = "0.4.0"
 num-bigint = "0.4.0"
 num-traits = "0.2.14"
 yansi = "0.5.1"
@@ -19,6 +19,8 @@ yansi = "0.5.1"
 [dependencies.clap]
 version = "3.1.12"
 features = ['derive']
+
+# TODO: add option to link to stdlib
 
 [profile.minrel]
 inherits = "release"
