@@ -28,11 +28,7 @@ struct Args {
 
     /// Prove each factor to be prime using deterministic Miller-Rabin or Lucas's primality test
     #[clap(short, long)]
-    prove: bool
-
-    // TODO: set timeout
-    // TODO: display ETA for big integers in verbose mode
-    // TODO: implement [Lucas test](https://en.wikipedia.org/wiki/Lucas_primality_test) and output it in json mode
+    prove: bool,
 }
 
 // Some hard numbers for profiling:
@@ -45,9 +41,14 @@ struct Args {
 fn main() {
     let args = Args::parse();
 
+    // TODO: set timeout
+    // TODO: display ETA for big integers in verbose mode
+    // TODO: implement [Lucas test](https://en.wikipedia.org/wiki/Lucas_primality_test) and output it in json mode
+
     for n in args.num.into_iter() {
         if args.verbose {
-            eprintln!("{}", Green.paint(format!("The input {} has {} bits.", n, n.bits())));
+            let info = Green.paint(format!("The input {} has {} bits.", n, n.bits()));
+            eprintln!("{}", info);
         }
 
         // print headers
@@ -62,7 +63,11 @@ fn main() {
         let factors = factorize(n);
         let elapsed = tstart.elapsed();
         if args.verbose {
-            eprintln!("{}", Green.paint(format!("It takes {:.2}ms to factorize.", elapsed.as_secs_f32() * 1000f32)));
+            let info = Green.paint(format!(
+                "It takes {:.2}ms to factorize.",
+                elapsed.as_secs_f32() * 1000f32
+            ));
+            eprintln!("{}", info);
         }
 
         // print factors
@@ -74,7 +79,7 @@ fn main() {
                     }
                 }
                 println!();
-            },
+            }
             OutputFormat::JSON => println!("{{factors: {:?}, complete: true}}", factors),
             OutputFormat::MATH => {
                 let mut first = true;
